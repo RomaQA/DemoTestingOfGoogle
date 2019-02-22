@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.lang.reflect.Field;
 /*
-This class is inherited by all pages.
+This  class is inherited by all pages.
  */
 public abstract class AbstractPage
 {
