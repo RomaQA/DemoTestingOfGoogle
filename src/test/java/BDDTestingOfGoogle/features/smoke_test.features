@@ -1,13 +1,23 @@
-Feature: Presentations basic test cases using next technologies stack: Junit+Selenide+Cucumber+Pageobject+Jenkins+Allure.
-Scenario: Open google and search by word "yandex".
+Feature: Presentation basic test cases using the next technologie stack: Junit+Selenide+Cucumber+Pageobject+Jenkins+Allure
+
+  @success
+  Scenario: Open google and search by word "yandex"
   Given open google
   When input word "yandex" to the search field
   And press on search button
-  Then displays result list with link to "https://www.yandex.rug"
+  Then displays result list with link to https://www.yandex.ru
 
-  Scenario: Follow the search link from the search result page .
+  @success
+  Scenario: Follow the link from the search result page
     Given open google
     When input word "yandex" to the search field
     And press on search button
-    And press on the link "https://www.yandex.ru"
+    And press on the link https://www.yandex.ru
     Then yandex web page is opened.
+
+  @fail
+  Scenario: Fail scenario -link doesn't found in the search list
+    Given open google
+    When input word "yandex" to the search field
+    And press on search button
+    Then press on the link https://www.facebook2.com/yandex/

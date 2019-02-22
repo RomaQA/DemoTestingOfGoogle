@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
         features = "src/test/java/BDDTestingOfGoogle/features/smoke_test.features",
         glue = "BDDTestingOfGoogle.steps",
         dryRun = false,
-        strict = false
+        strict = true
 )
 
 public class RunnerTest {

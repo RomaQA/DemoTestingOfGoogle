@@ -26,6 +26,7 @@ import static com.codeborne.selenide.WebDriverRunner.url;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.containsString;
 import static com.codeborne.selenide.Selectors.*;
+import static org.junit.Assert.fail;
 
 
 public class StepDev {
@@ -42,8 +43,8 @@ public class StepDev {
 
     @When("^input word \"([^\"]*)\" to the search field$")
     public void inputWordYandexInSearchField(String searchWord) {
-        googleWelcomePage.get("Search_field").shouldBe(visible); // Проверяем, что строка поиска google видна
-        googleWelcomePage.get("Search_field").sendKeys(searchWord); //Печатаем искомое слово
+        googleWelcomePage.get("Search_field").shouldBe(visible); // Checking that the search field is visible
+        googleWelcomePage.get("Search_field").sendKeys(searchWord); // typing of search word
 
 
 
@@ -51,22 +52,29 @@ public class StepDev {
 
     @And("^press on search button$")
     public void pressOnSearchButton(){
-        googleWelcomePage.get("Search_button").shouldBe(visible); // Проверям, что кнопка "Поиск в Google" видна
-        googleWelcomePage.get("Search_button").click(); // Нажимаем на кнпоку поиска
+        googleWelcomePage.get("Search_button").shouldBe(visible); // Checking that the search button is visible
+        googleWelcomePage.get("Search_button").click(); // Clicking on the search button
     }
 
-    @Then("^displays result list with link to \"([^\"]*)\"$")
-    public void displaysResultListWithLinkToYandex(String link)  {
-        googleResultPage.get("Link_to_yandex").shouldHave(text(link)); // проверяем, что в результатах поиска имеется искомая ссылка.
+    @Then("^displays result list with link to https://www.yandex.ru$")
+    public void displaysResultListWithLinkToYandex(){
+        googleResultPage.get("Link_to_yandex").shouldBe(visible); // Checking that search list has searching link.
     }
 
-    @And("^press on the link \"([^\"]*)\"$")
-    public void pressOnTheLink(String link)  {
-        googleResultPage.get("Link_to_yandex").shouldHave(text(link)).click(); // сверяем, что ссылка правильная и нажимаем на нее
+    @And("^press on the link https://www.yandex.ru$")
+    public void pressOnTheLinkYandex()  {
+
+        googleResultPage.get("Link_to_yandex").click(); // Clicking on the link
+    }
+
+    @Then("^press on the link https://www.facebook2.com/yandex/$")
+    public void pressOnTheLinkFacebook()  {   //
+        googleResultPage.get("Link_to_facebook").click(); // Clicking on the link
     }
 
     @Then("^yandex web page is opened.$")
     public void webPageIsOpened()  {
         openedWebPagesViaLinks.get("Yandex_page").isDisplayed();
     }
+
 }
